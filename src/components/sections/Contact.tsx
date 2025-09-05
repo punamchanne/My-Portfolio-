@@ -6,15 +6,14 @@ import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 
 /**
- * Contact Component with EmailJS Integration
- * 
- * Clean implementation with only EmailJS functionality
- * Service ID: service_huqs3za
- * Template ID: template_foz6zt8
- * Public Key: akn8eSZXqFog0WW7P
+ * Contact Component with EmailJS Integration using environment variables
  */
 
 const Contact = () => {
+  // EmailJS configuration
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -27,24 +26,24 @@ const Contact = () => {
   // Initialize EmailJS
   useEffect(() => {
     console.log('Initializing EmailJS...');
-    emailjs.init('akn8eSZXqFog0WW7P');
+    emailjs.init(EMAILJS_PUBLIC_KEY);
     console.log('EmailJS initialized successfully');
-  }, []);
+  }, [EMAILJS_PUBLIC_KEY]);
 
   // Test EmailJS connection
   const testEmailJS = async () => {
     console.log('Testing EmailJS connection...');
     try {
       const result = await emailjs.send(
-        'service_huqs3za',
-        'template_foz6zt8',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           from_name: 'Test User',
           from_email: 'test@example.com',
           message: 'This is a test message from your portfolio contact form.',
           to_name: 'Punam Channe'
         },
-        'akn8eSZXqFog0WW7P'
+        EMAILJS_PUBLIC_KEY
       );
       console.log('Test email sent successfully:', result);
       toast.success('Test email sent successfully!');
@@ -87,15 +86,15 @@ const Contact = () => {
       
       // Send email using EmailJS
       const result = await emailjs.send(
-        'service_huqs3za',
-        'template_foz6zt8',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_name: 'Punam Channe'
         },
-        'akn8eSZXqFog0WW7P'
+        EMAILJS_PUBLIC_KEY
       );
       
       console.log('Email sent successfully:', result);

@@ -36,7 +36,7 @@ const Hero = () => {
               {/* Updated to use the uploaded profile image */}
               <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden border-4 border-portfolio-primary purple-glow">
                 <img 
-                  src="/lovable-uploads/jpg2png/WhatsApp Image 2025-08-28 at 20.03.12_4ddc8d03.png" 
+                  src="/images/profile.png" 
                   alt="Punam Kishor Channe" 
                   className="w-full h-full object-cover" 
                 />
